@@ -1,0 +1,4 @@
+resources:
+  - namespaces/namespaces.yaml
+  - operators/operators.yaml
+  - operands/operands.yaml
