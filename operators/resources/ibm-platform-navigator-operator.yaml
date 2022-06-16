@@ -2,7 +2,6 @@ apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
   name: ibm-platform-navigator
-  namespace: cp4i
 spec:
   channel: v5.2
   installPlanApproval: Automatic
