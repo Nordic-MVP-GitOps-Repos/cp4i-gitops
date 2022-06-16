@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: openshift-gitops
+  name: cp4i-namespaces
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
+spec:
+  destination:
+    namespace: openshift-gitops
+    server: https://kubernetes.default.svc
+  project: cp4i
+  source:
+    repoURL: https://github.com/Nordic-MVP-GitOps-Repos/cp4i-gitops 
+    path: namespaces/resources
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
