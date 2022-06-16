@@ -1,0 +1,41 @@
+# See https://www.ibm.com/docs/en/app-connect/containers_cd?topic=resources-dashboard-reference
+apiVersion: appconnect.ibm.com/v1beta1
+kind: Dashboard
+metadata:
+  name: ace-dashboard-01
+spec:
+  logLevel: info
+  license:
+    accept: true
+    license: L-APEH-C9NCK6
+    use: CloudPakForIntegrationNonProduction
+  pod:
+    containers:
+      content-server:
+        resources:
+          limits:
+            cpu: 250m
+            ephemeral-storage: 20Gi
+            memory: 512Mi
+          requests:
+            cpu: 50m
+            ephemeral-storage: 5Gi
+            memory: 50Mi
+      control-ui:
+        resources:
+          limits:
+            cpu: 500m
+            ephemeral-storage: 150Mi
+            memory: 512Mi
+          requests:
+            cpu: 50m
+            ephemeral-storage: 50Mi
+            memory: 125Mi
+  useCommonServices: true
+  version: '12.0'
+  storage:
+    selector: {}
+    size: 5Gi
+    sizeLimit: 20Gi
+    type: ephemeral
+  replicas: 1

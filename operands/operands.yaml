@@ -1,9 +1,9 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: operators
+  name: operands
   annotations:
-    argocd.argoproj.io/sync-wave: "200"
+    argocd.argoproj.io/sync-wave: "300"
 spec:
   destination:
     namespace: openshift-gitops
@@ -11,10 +11,9 @@ spec:
   project: cp4i
   source:
     repoURL: https://github.com/Nordic-MVP-GitOps-Repos/cp4i-gitops 
-    path: operators/resources
+    path: instances/resources
     targetRevision: main
   syncPolicy:
     automated:
       prune: false
       selfHeal: true
-
