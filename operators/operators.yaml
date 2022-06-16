@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: operators
+  annotations:
+    argocd.argoproj.io/sync-wave: "200"
+spec:
+  destination:
+    namespace: openshift-gitops
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://github.com/Nordic-MVP-GitOps-Repos/cp4i-gitops 
+    path: operators/resources
+    targetRevision: master
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+
