@@ -28,8 +28,8 @@ spec:
         enabled: true
         class: ibmc-file-gold-gid
         deleteClaim: true
-      securityContext:
-     supplementalGroups: [99]
+    securityContext:
+      supplementalGroups: [99]
     resources:
       limits:
         memory: 4Gi
