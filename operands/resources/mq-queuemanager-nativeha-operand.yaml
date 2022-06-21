@@ -17,15 +17,19 @@ spec:
       tls:
         secretName: queue-manager-ha-secret-internal
     storage:
-      defaultClass: ibmc-block-gold
-      defaultDeleteClaim: true
-      persistedData:
-        enabled: false
       queueManager:
-        size: 2Gi
-        type: persistent-claim
+        class: ibmc-file-gold-gid
+        deleteClaim: true
+      persistedData:
+        enabled: true
+        class: ibmc-file-gold-gid
+        deleteClaim: true
       recoveryLogs:
-        enabled: false
+        enabled: true
+        class: ibmc-file-gold-gid
+        deleteClaim: true
+      securityContext:
+     supplementalGroups: [99]
     resources:
       limits:
         memory: 4Gi
