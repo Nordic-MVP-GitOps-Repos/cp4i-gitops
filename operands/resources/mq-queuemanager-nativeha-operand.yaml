@@ -18,6 +18,7 @@ spec:
         secretName: queue-manager-ha-secret-internal
     storage:
       defaultClass: ibmc-block-gold
+      defaultDeleteClaim: true
       persistedData:
         enabled: false
       queueManager:
