@@ -17,8 +17,14 @@ spec:
       tls:
         secretName: queue-manager-ha-secret-internal
     storage:
+      defaultClass: ibmc-block-gold
+      persistedData:
+        enabled: false
       queueManager:
-        type: ibmc-block-gold
+        size: 2Gi
+        type: persistent-claim
+      recoveryLogs:
+        enabled: false
     resources:
       limits:
         memory: 4Gi
