@@ -20,6 +20,8 @@ spec:
       queueManager:
         type: ibmc-block-gold
     resources:
+      limits:
+        memory: 4Gi
       requests:
         memory: 4Gi
     mqsc:
