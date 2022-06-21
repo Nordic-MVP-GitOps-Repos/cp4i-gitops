@@ -20,15 +20,15 @@ spec:
         secretName: queue-manager-ha-secret-internal
     storage:
       queueManager:
-        class: ibmc-file-gold-gid
+        class: ibmc-block-gold
         deleteClaim: true
       persistedData:
         enabled: false
-        class: ibmc-file-gold-gid
+        class: ibmc-block-gold
         deleteClaim: true
       recoveryLogs:
         enabled: false
-        class: ibmc-file-gold-gid
+        class: ibmc-block-gold
         deleteClaim: true
     resources:
       limits:
