@@ -23,18 +23,18 @@ spec:
         class: ibmc-file-gold-gid
         deleteClaim: true
       persistedData:
-        enabled: true
+        enabled: false
         class: ibmc-file-gold-gid
         deleteClaim: true
       recoveryLogs:
-        enabled: true
+        enabled: false
         class: ibmc-file-gold-gid
         deleteClaim: true
     resources:
       limits:
         memory: 4Gi
       requests:
-        memory: 4Gi
+        memory: 1Gi
     mqsc:
     - configMap:
         name: queue-manager-ha-mi-configmap
