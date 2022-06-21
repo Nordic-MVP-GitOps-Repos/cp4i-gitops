@@ -19,6 +19,9 @@ spec:
     storage:
       queueManager:
         type: ibmc-block-gold
+    resources:
+      requests:
+        memory: 1Gi
     mqsc:
     - configMap:
         name: queue-manager-ha-mi-configmap
