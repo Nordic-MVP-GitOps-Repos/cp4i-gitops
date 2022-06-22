@@ -34,7 +34,7 @@ spec:
       limits:
         memory: 4Gi
       requests:
-        memory: 1Gi
+        memory: 2Gi
     mqsc:
     - configMap:
         name: queue-manager-ha-mi-configmap
