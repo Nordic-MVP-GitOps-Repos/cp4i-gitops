@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   namespace: openshift-gitops
-  name: cp4i-namespaces
+  name: namespaces
   annotations:
     argocd.argoproj.io/sync-wave: "100"
 spec:
