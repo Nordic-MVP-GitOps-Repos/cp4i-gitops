@@ -3,7 +3,7 @@ kind: Application
 metadata:
   name: operands
   annotations:
-    argocd.argoproj.io/sync-wave: "300"
+    argocd.argoproj.io/sync-wave: "400"
 spec:
   destination:
     namespace: cp4i
