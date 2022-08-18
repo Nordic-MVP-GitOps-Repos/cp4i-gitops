@@ -19,9 +19,9 @@ spec:
         type: ibmc-block-gold
     resources:
       limits:
-        memory: 1Gi
+        memory: 2Gi
       requests:
-        memory: 1Gi
+        memory: 2Gi
     mqsc:
     - configMap:
         name: queue-manager-ha-mi-configmap
