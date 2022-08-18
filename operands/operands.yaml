@@ -13,6 +13,8 @@ spec:
     repoURL: https://github.com/Nordic-MVP-GitOps-Repos/cp4i-gitops 
     path: operands/resources
     targetRevision: main
+    directory:
+      recurse: true
   syncPolicy:
     automated:
       prune: true
