@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: qm-alpha-configmap
+  name: qm-beta-configmap
 data:
   tls.mqsc: |
     DEFINE QLOCAL('BETA.QUEUE1') DEFPSIST(YES) REPLACE 
