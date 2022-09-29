@@ -1,7 +1,7 @@
 apiVersion: mq.ibm.com/v1beta1
 kind: QueueManager
 metadata:
-  name: queue-manager-single-instance
+  name: qm-beta
 spec:
   license:
     accept: true
@@ -11,7 +11,7 @@ spec:
   queueManager:
     route:
       enabled: true
-    name: QM
+    name: QMBETA
     availability:
       type: SingleInstance
     storage:
@@ -24,7 +24,7 @@ spec:
         memory: 1Gi
     mqsc:
     - configMap:
-        name: queue-manager-ha-mi-configmap
+        name: qm-beta-configmap
         items:
         - tls.mqsc
   version: 9.2.5.0-r3
