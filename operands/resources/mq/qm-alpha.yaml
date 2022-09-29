@@ -1,7 +1,7 @@
 apiVersion: mq.ibm.com/v1beta1
 kind: QueueManager
 metadata:
-  name: queue-manager-ha
+  name: qm-alpha
 spec:
   license:
     accept: true
@@ -13,7 +13,7 @@ spec:
   queueManager:
     route:
       enabled: true
-    name: QMHA
+    name: QMALPHA
     availability:
       type: NativeHA
       tls:
@@ -37,7 +37,7 @@ spec:
         memory: 2Gi
     mqsc:
     - configMap:
-        name: queue-manager-ha-mi-configmap
+        name: qm-alpha-configmap
         items:
         - tls.mqsc
   version: 9.2.5.0-r3
