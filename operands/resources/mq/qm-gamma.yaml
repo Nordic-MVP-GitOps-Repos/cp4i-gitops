@@ -18,6 +18,10 @@ spec:
               value: 'yes'
           name: qmgr
   queueManager:
+    mqsc:
+      - configMap:
+          items:
+            - mqsc
     resources:
       limits:
         cpu: 500m
