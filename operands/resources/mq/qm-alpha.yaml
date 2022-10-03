@@ -5,9 +5,9 @@ metadata:
 spec:
   license:
     accept: true
-    license: L-APIG-BYHCL7
+    license: L-RJON-C7QG3S
     metric: VirtualProcessorCore
-    use: Development
+    use: NonProduction
   securityContext:
     supplementalGroups: [99]
   queueManager:
@@ -15,7 +15,7 @@ spec:
       enabled: true
     name: QMALPHA
     availability:
-      type: SingleInstance
+      type: NativeHA
       tls:
         secretName: queue-manager-ha-secret-internal
     storage:
