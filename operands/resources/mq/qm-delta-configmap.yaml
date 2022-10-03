@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qm-delta-configmap
+data:
+  mqsc: |
+    DEFINE QLOCAL('DELTA.QUEUE.1') REPLACE
+    DEFINE QLOCAL('DELTA.QUEUE.2') REPLACE
