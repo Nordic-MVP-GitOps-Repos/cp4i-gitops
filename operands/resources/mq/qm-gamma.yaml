@@ -1,0 +1,31 @@
+apiVersion: mq.ibm.com/v1beta1
+kind: QueueManager
+metadata:
+  name: qm-gamma
+spec:
+  license:
+    accept: true
+    license: L-APIG-BYHCL7
+    use: Development
+    metric: VirtualProcessorCore
+  web:
+    enabled: true
+  template:
+    pod:
+      containers:
+        - env:
+            - name: MQSNOAUT
+              value: 'yes'
+          name: qmgr
+  queueManager:
+    resources:
+      limits:
+        cpu: 500m
+      requests:
+        cpu: 500m
+    availability:
+      type: SingleInstance
+    storage:
+      queueManager:
+        type: ephemeral
+  version: 9.2.5.0-r3
