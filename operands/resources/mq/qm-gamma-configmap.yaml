@@ -4,5 +4,5 @@ metadata:
   name: qm-gamma-configmap
 data:
   mqsc: |
-    DEFINE QLOCAL('DEV.QUEUE.1') REPLACE
-    DEFINE QLOCAL('DEV.QUEUE.2') REPLACE
+    DEFINE QLOCAL('GAMMA.QUEUE.1') REPLACE
+    DEFINE QLOCAL('GAMMA.QUEUE.2') REPLACE
