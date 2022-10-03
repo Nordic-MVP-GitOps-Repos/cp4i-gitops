@@ -5,9 +5,9 @@ metadata:
 spec:
   license:
     accept: true
-    license: L-RJON-C7QG3S
+    license: L-APIG-BYHCL7
     metric: VirtualProcessorCore
-    use: NonProduction
+    use: Development
   securityContext:
     supplementalGroups: [99]
   queueManager:
