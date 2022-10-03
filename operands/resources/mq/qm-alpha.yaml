@@ -15,7 +15,7 @@ spec:
       enabled: true
     name: QMALPHA
     availability:
-      type: NativeHA
+      type: SingleInstance
       tls:
         secretName: queue-manager-ha-secret-internal
     storage:
