@@ -18,6 +18,11 @@ spec:
               value: 'yes'
           name: qmgr
   queueManager:
+    mqsc:
+      - configMap:
+          name: qm-delta-configmap
+          items:
+            - mqsc
     resources:
       limits:
         cpu: 500m
