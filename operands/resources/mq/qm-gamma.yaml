@@ -20,6 +20,7 @@ spec:
   queueManager:
     mqsc:
       - configMap:
+          name: qm-gamma-configmap
           items:
             - mqsc
     resources:
