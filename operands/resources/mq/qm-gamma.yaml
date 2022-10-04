@@ -18,6 +18,7 @@ spec:
               value: 'yes'
           name: qmgr
   queueManager:
+    name: QMGAMMA
     mqsc:
       - configMap:
           name: qm-gamma-configmap
