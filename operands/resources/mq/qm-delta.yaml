@@ -18,6 +18,7 @@ spec:
               value: 'yes'
           name: qmgr
   queueManager:
+    name: QMDELTA
     mqsc:
       - configMap:
           name: qm-delta-configmap
