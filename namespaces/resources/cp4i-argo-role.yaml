@@ -10,5 +10,6 @@ rules:
       - integration.ibm.com
       - mq.ibm.com
       - appconnect.ibm.com
+      - cert-manager.io
     resources:
       - '*'
