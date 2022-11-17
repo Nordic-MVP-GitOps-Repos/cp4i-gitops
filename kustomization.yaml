@@ -1,4 +1,5 @@
 resources:
+  - argo-project.yaml
   - namespaces/namespaces.yaml
   - operators/operators.yaml
   - certs/certs.yaml
