@@ -1,0 +1,249 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: build-ace-application
+spec:
+  finally:
+    - name: github-set-status-finally
+      params:
+        - name: GITHUB_HOST_URL
+          value: api.github.com
+        - name: GITHUB_TOKEN_SECRET_NAME
+          value: vcc-github-user
+        - name: GITHUB_TOKEN_SECRET_KEY
+          value: password
+        - name: TARGET_URL
+          value: >-
+            https://console-openshift-console.vcc-cluster-nonprod-londo-2357dd4394b07a146216c9204c33478a-i000.eu-gb.containers.appdomain.cloud/k8s/ns/openshift-gitops/tekton.dev~v1beta1~PipelineRun/$(context.pipelineRun.name)
+        - name: DESCRIPTION
+          value: Integration server build finished
+        - name: CONTEXT
+          value: continuous-integration/tekton
+        - name: STATE
+          value: $(tasks.status)
+        - name: GIT_REPO
+          value: $(params.gitrepo)
+        - name: GIT_REVISION
+          value: $(params.gitrevision)
+      taskRef:
+        kind: Task
+        name: github-set-status
+  params:
+    - name: commit_id
+      type: string
+    - name: commit_message
+      type: string
+    - name: commit_user
+      type: string
+    - name: tl-secret
+      type: string
+    - name: imageURL
+      type: string
+    - name: imageTag
+      type: string
+    - name: consoleAddress
+      type: string
+    - name: reg-secret-name
+      type: string
+    - description: The git repo to clone
+      name: gitrepo
+      type: string
+    - description: The name of the git repo to clone
+      name: gitreponame
+      type: string
+    - description: The revision of the git repo to clone
+      name: gitrevision
+      type: string
+    - default: .
+      description: The path in the git repo to build from
+      name: gitpath
+      type: string
+    - description: The git repo with the gitops repo
+      name: gitopsrepo
+      type: string
+  tasks:
+    - name: s2i-ace-gradle-overlay
+      params:
+        - name: PATH_CONTEXT
+          value: app/$(params.gitpath)
+        - name: TLSVERIFY
+          value: 'false'
+        - name: LICENSE
+          value: accept
+        - name: BUILD_IMAGE
+          value: >-
+            image-registry.openshift-image-registry.svc:5000/tma-dev/s2i-ace-maven:12.0.4.0
+        - name: RUNTIME_IMAGE
+          value: >-
+            cp.icr.io/cp/appc/ace-server-prod@sha256:7eb8483de45c1634d09e24521b9d2f89a9e4d0c9b89a1a5d52cc4fd37a091234
+        - name: commit_id
+          value: $(params.commit_id)
+        - name: commit_message
+          value: $(params.commit_message)
+        - name: commit_user
+          value: $(params.commit_user)
+        - name: IMAGE
+          value: '$(params.imageURL):$(params.imageTag)'
+      runAfter:
+        - git-clone
+      taskRef:
+        kind: Task
+        name: s2i-ace-gradle-overlay
+      workspaces:
+        - name: source
+          workspace: source
+    - name: github-set-status
+      params:
+        - name: GITHUB_HOST_URL
+          value: api.github.com
+        - name: GITHUB_TOKEN_SECRET_NAME
+          value: vcc-github-user
+        - name: GITHUB_TOKEN_SECRET_KEY
+          value: password
+        - name: TARGET_URL
+          value: >-
+            https://console-openshift-console.vcc-cluster-nonprod-londo-2357dd4394b07a146216c9204c33478a-i000.eu-gb.containers.appdomain.cloud/ns/openshift-gitops/tekton.dev~v1beta1~PipelineRun/$(context.pipelineRun.name)
+        - name: DESCRIPTION
+          value: Integration server build is pending
+        - name: CONTEXT
+          value: continuous-integration/tekton
+        - name: STATE
+          value: pending
+        - name: GIT_REPO
+          value: $(params.gitrepo)
+        - name: GIT_REVISION
+          value: $(tasks.git-clone.results.commit)
+      runAfter:
+        - git-clone
+      taskRef:
+        kind: Task
+        name: github-set-status
+    # - name: twistlock-scan
+    #   params:
+    #     - name: tl-secret
+    #       value: $(params.tl-secret)
+    #     - name: imageURL
+    #       value: $(params.imageURL)
+    #     - name: imageTag
+    #       value: $(params.imageTag)
+    #     - name: consoleAddress
+    #       value: $(params.consoleAddress)
+    #     - name: reg-secret-name
+    #       value: $(params.reg-secret-name)
+    #   runAfter:
+    #     - s2i-ace-gradle-overlay
+    #   taskRef:
+    #     kind: Task
+    #     name: twistlock-scan
+    - name: git-clone
+      params:
+        - name: url
+          value: $(params.gitrepo)
+        - name: revision
+          value: $(params.gitrevision)
+        - name: submodules
+          value: 'true'
+        - name: depth
+          value: '1'
+        - name: sslVerify
+          value: 'true'
+        - name: subdirectory
+          value: app
+        - name: deleteExisting
+          value: 'true'
+        - name: verbose
+          value: 'true'
+        - name: gitInitImage
+          value: >-
+            registry.redhat.io/openshift-pipelines/pipelines-git-init-rhel8@sha256:fbf1c4df0f6c1330b34a0ea882ca1dff0e224f3a7060772532a2244438b91074
+        - name: userHome
+          value: /tekton/home
+      taskRef:
+        kind: ClusterTask
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: source
+        - name: basic-auth
+          workspace: git-basic-auth
+    - name: git-clone-gitops
+      params:
+        - name: url
+          value: $(params.gitopsrepo)
+        - name: submodules
+          value: 'true'
+        - name: depth
+          value: '1'
+        - name: sslVerify
+          value: 'true'
+        - name: subdirectory
+          value: gitops
+        - name: deleteExisting
+          value: 'true'
+        - name: verbose
+          value: 'true'
+        - name: gitInitImage
+          value: >-
+            registry.redhat.io/openshift-pipelines/pipelines-git-init-rhel8@sha256:fbf1c4df0f6c1330b34a0ea882ca1dff0e224f3a7060772532a2244438b91074
+        - name: userHome
+          value: /tekton/home
+      taskRef:
+        kind: ClusterTask
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: source
+        - name: basic-auth
+          workspace: gitops-basic-auth
+    - name: kustomize-set-image
+      params:
+        - name: path
+          value: gitops/envs/overlays/dev/apps/$(params.gitreponame)
+        - name: image-name
+          value: IMAGE
+        - name: image
+          value: '$(params.imageURL):$(params.imageTag)'
+      runAfter:
+        - git-clone-gitops
+        #- twistlock-scan
+        - s2i-ace-gradle-overlay
+      taskRef:
+        kind: Task
+        name: kustomize-set-image
+      workspaces:
+        - name: source
+          workspace: source
+    - name: push-image-to-gitops
+      runAfter:
+        - kustomize-set-image
+      taskRef:
+        kind: ClusterTask
+        name: git-cli
+      params:
+        - name: BASE_IMAGE
+          value: >-
+            docker.io/alpine/git:v2.26.2@sha256:23618034b0be9205d9cc0846eb711b12ba4c9b468efdd8a59aac1d7b1a23363f
+        - name: GIT_USER_NAME
+          value: $(params.commit_user)
+        - name: GIT_USER_EMAIL
+          value: $(params.commit_user)
+        - name: GIT_SCRIPT
+          value: >
+            cd gitops
+            git add -u .
+            git commit -m "Updated image by pipeline run
+            $(context.pipelineRun.uid)"
+            git push origin HEAD:main
+        - name: USER_HOME
+          value: /root
+        - name: VERBOSE
+          value: 'true'
+      workspaces:
+        - name: source
+          workspace: source
+        - name: basic-auth
+          workspace: gitops-basic-auth
+  workspaces:
+    - name: source
+    - name: git-basic-auth
+    - name: gitops-basic-auth
