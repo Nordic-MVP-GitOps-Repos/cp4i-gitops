@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ci
+  name: ci-tasks
   namespace: openshift-pipelines
 spec:
   destination:
@@ -20,7 +20,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ci
+  name: s2i-buildconfig
   namespace: openshift-pipelines
 spec:
   destination:
