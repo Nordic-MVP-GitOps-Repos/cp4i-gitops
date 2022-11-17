@@ -5,7 +5,7 @@ metadata:
   namespace: openshift-pipelines
 spec:
   destination:
-    namespace: openshift-pipelines
+    namespace: cp4i
     server: https://kubernetes.default.svc
   project: cp4i
   source:
@@ -21,7 +21,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: s2i-buildconfig
-  namespace: openshift-pipelines
+  namespace: cp4i
 spec:
   destination:
     namespace: openshift-pipelines
