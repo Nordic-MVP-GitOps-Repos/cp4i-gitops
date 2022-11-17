@@ -11,5 +11,6 @@ rules:
       - mq.ibm.com
       - appconnect.ibm.com
       - cert-manager.io
+      - tekton.dev
     resources:
       - '*'
