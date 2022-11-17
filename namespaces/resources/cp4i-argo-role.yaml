@@ -1,0 +1,30 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: cp4i-argo-role
+  namespace: openshift-gitops
+rules:
+  - verbs:
+      - '*'
+    apiGroups:
+      - apiconnect.ibm.com
+    resources:
+      - '*'
+  - verbs:
+      - '*'
+    apiGroups:
+      - integration.ibm.com
+    resources:
+      - '*'
+    - verbs:
+      - '*'
+    apiGroups:
+      - mq.ibm.com
+    resources:
+      - '*'
+  - verbs:
+      - '*'
+    apiGroups:
+      - appconnect.ibm.com
+    resources:
+      - '*'
