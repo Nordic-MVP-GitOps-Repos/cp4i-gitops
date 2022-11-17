@@ -7,23 +7,8 @@ rules:
       - '*'
     apiGroups:
       - apiconnect.ibm.com
-    resources:
-      - '*'
-  - verbs:
-      - '*'
-    apiGroups:
       - integration.ibm.com
-    resources:
-      - '*'
-  - verbs:
-      - '*'
-    apiGroups:
       - mq.ibm.com
-    resources:
-      - '*'
-  - verbs:
-      - '*'
-    apiGroups:
       - appconnect.ibm.com
     resources:
       - '*'
