@@ -16,7 +16,7 @@ rules:
       - integration.ibm.com
     resources:
       - '*'
-    - verbs:
+  - verbs:
       - '*'
     apiGroups:
       - mq.ibm.com
