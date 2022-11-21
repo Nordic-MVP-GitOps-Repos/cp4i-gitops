@@ -4,14 +4,14 @@ metadata:
   name: build-ace-application
 spec:
   finally:
-    - name: github-set-status-finally
-      params:
+     - name: github-set-status-finally
+        params:
         - name: GITHUB_HOST_URL
           value: api.github.com
         - name: GITHUB_TOKEN_SECRET_NAME
-          value: vcc-github-user
+          value: ''
         - name: GITHUB_TOKEN_SECRET_KEY
-          value: password
+          value: ''
         - name: TARGET_URL
           value: >-
             https://console-openshift-console.vcc-cluster-nonprod-londo-2357dd4394b07a146216c9204c33478a-i000.eu-gb.containers.appdomain.cloud/k8s/ns/openshift-gitops/tekton.dev~v1beta1~PipelineRun/$(context.pipelineRun.name)
@@ -25,6 +25,10 @@ spec:
           value: $(params.gitrepo)
         - name: GIT_REVISION
           value: $(params.gitrevision)
+        - name: SHA
+          value: $(tasks.git-clone-gitops.results.commit)
+        - name: REPO_FULL_NAME
+          value: $(params.gitrepo)
       taskRef:
         kind: Task
         name: github-set-status
@@ -90,10 +94,6 @@ spec:
       params:
         - name: GITHUB_HOST_URL
           value: api.github.com
-        - name: GITHUB_TOKEN_SECRET_NAME
-          value: vcc-github-user
-        - name: GITHUB_TOKEN_SECRET_KEY
-          value: password
         - name: TARGET_URL
           value: >-
             #https://console-openshift-console.vcc-cluster-nonprod-londo-2357dd4394b07a146216c9204c33478a-i000.eu-gb.containers.appdomain.cloud/ns/openshift-gitops/tekton.dev~v1beta1~PipelineRun/$(context.pipelineRun.name)
@@ -107,6 +107,10 @@ spec:
           value: $(params.gitrepo)
         - name: GIT_REVISION
           value: $(tasks.git-clone.results.commit)
+        - name: REPO_FULL_NAME
+          value: $(params.gitrepo)
+        - name: SHA
+          value: $(tasks.git-clone-gitops.results.commit)
       runAfter:
         - git-clone
       taskRef:
