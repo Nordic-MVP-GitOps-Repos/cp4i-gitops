@@ -25,14 +25,13 @@ metadata:
     app.kubernetes.io/managed-by: EventListener
     app.kubernetes.io/part-of: Triggers
     eventlistener: event-listener-ace-application
-    type: sharded
 spec:
   to:
     kind: Service
     name: el-event-listener-ace-application
     weight: 100
   port:
-    targetPort: http-listener
+    targetPort: https-listener
   tls:
     termination: edge
     insecureEdgeTerminationPolicy: Redirect
