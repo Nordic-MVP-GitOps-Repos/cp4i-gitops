@@ -12,5 +12,6 @@ rules:
       - appconnect.ibm.com
       - cert-manager.io
       - tekton.dev
+      - buildconfigs.build.openshift.io
     resources:
       - '*'
