@@ -21,10 +21,6 @@ spec:
           value: continuous-integration/tekton
         - name: STATE
           value: $(tasks.status)
-        - name: GIT_REPO
-          value: $(params.gitrepo)
-        - name: GIT_REVISION
-          value: $(params.gitrevision)
         - name: SHA
           value: $(tasks.git-clone-gitops.results.commit)
         - name: REPO_FULL_NAME
@@ -103,10 +99,6 @@ spec:
           value: continuous-integration/tekton
         - name: STATE
           value: pending
-        - name: GIT_REPO
-          value: $(params.gitrepo)
-        - name: GIT_REVISION
-          value: $(tasks.git-clone.results.commit)
         - name: REPO_FULL_NAME
           value: $(params.gitrepo)
         - name: SHA
