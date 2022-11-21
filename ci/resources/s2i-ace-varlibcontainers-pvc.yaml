@@ -1,0 +1,13 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: s2i-ace-varlibcontainers-pvc
+  namespace: cp4i
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Gi
+  storageClassName: ibmc-file-gold-gid
+  volumeMode: Filesystem
