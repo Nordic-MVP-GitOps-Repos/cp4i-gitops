@@ -4,7 +4,7 @@ metadata:
   name: build-ace-application
 spec:
   finally:
-     - name: github-set-status-finally
+    - name: github-set-status-finally
        params:
         - name: GITHUB_HOST_URL
           value: api.github.com
