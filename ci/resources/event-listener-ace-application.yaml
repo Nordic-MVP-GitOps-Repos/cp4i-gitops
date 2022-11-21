@@ -2,8 +2,6 @@ apiVersion: triggers.tekton.dev/v1alpha1
 kind: EventListener
 metadata:
   name: event-listener-ace-application
-  finalizers:
-    - eventlisteners.triggers.tekton.dev
 spec:
   serviceAccountName: pipeline
   triggers:
