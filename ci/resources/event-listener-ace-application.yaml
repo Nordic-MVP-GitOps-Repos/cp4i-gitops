@@ -1,0 +1,41 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: event-listener-ace-application
+  finalizers:
+    - eventlisteners.triggers.tekton.dev
+spec:
+  serviceAccountName: pipeline
+  triggers:
+    - bindings:
+        - kind: TriggerBinding
+          ref: github-push-with-short-id
+      template:
+        ref: trigger-template-build-ace-application
+      interceptors:
+        - cel:
+            overlays:
+              - key: short_id
+                expression: 'body.head_commit.id.truncate(7)'
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: event-listener-ace-application
+  labels:
+    app.kubernetes.io/instance: pipelines
+    app.kubernetes.io/managed-by: EventListener
+    app.kubernetes.io/part-of: Triggers
+    eventlistener: event-listener-ace-application
+    type: sharded
+spec:
+  to:
+    kind: Service
+    name: el-event-listener-ace-application
+    weight: 100
+  port:
+    targetPort: http-listener
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
