@@ -35,15 +35,9 @@ spec:
       type: string
     - name: commit_user
       type: string
-    - name: tl-secret
-      type: string
     - name: imageURL
       type: string
     - name: imageTag
-      type: string
-    - name: consoleAddress
-      type: string
-    - name: reg-secret-name
       type: string
     - description: The git repo to clone
       name: gitrepo
@@ -72,7 +66,7 @@ spec:
           value: accept
         - name: BUILD_IMAGE
           value: >-
-            image-registry.openshift-image-registry.svc:5000/tma-dev/s2i-ace-maven:12.0.4.0
+            image-registry.openshift-image-registry.svc:5000/cp4i/s2i-ace:12.0.5.0
         - name: RUNTIME_IMAGE
           value: >-
             cp.icr.io/cp/appc/ace-server-prod@sha256:7eb8483de45c1634d09e24521b9d2f89a9e4d0c9b89a1a5d52cc4fd37a091234
@@ -102,7 +96,7 @@ spec:
           value: password
         - name: TARGET_URL
           value: >-
-            https://console-openshift-console.vcc-cluster-nonprod-londo-2357dd4394b07a146216c9204c33478a-i000.eu-gb.containers.appdomain.cloud/ns/openshift-gitops/tekton.dev~v1beta1~PipelineRun/$(context.pipelineRun.name)
+            #https://console-openshift-console.vcc-cluster-nonprod-londo-2357dd4394b07a146216c9204c33478a-i000.eu-gb.containers.appdomain.cloud/ns/openshift-gitops/tekton.dev~v1beta1~PipelineRun/$(context.pipelineRun.name)
         - name: DESCRIPTION
           value: Integration server build is pending
         - name: CONTEXT
@@ -118,23 +112,6 @@ spec:
       taskRef:
         kind: Task
         name: github-set-status
-    # - name: twistlock-scan
-    #   params:
-    #     - name: tl-secret
-    #       value: $(params.tl-secret)
-    #     - name: imageURL
-    #       value: $(params.imageURL)
-    #     - name: imageTag
-    #       value: $(params.imageTag)
-    #     - name: consoleAddress
-    #       value: $(params.consoleAddress)
-    #     - name: reg-secret-name
-    #       value: $(params.reg-secret-name)
-    #   runAfter:
-    #     - s2i-ace-gradle-overlay
-    #   taskRef:
-    #     kind: Task
-    #     name: twistlock-scan
     - name: git-clone
       params:
         - name: url
@@ -205,7 +182,6 @@ spec:
           value: '$(params.imageURL):$(params.imageTag)'
       runAfter:
         - git-clone-gitops
-        #- twistlock-scan
         - s2i-ace-gradle-overlay
       taskRef:
         kind: Task
