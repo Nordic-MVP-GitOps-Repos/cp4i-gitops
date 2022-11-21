@@ -90,6 +90,10 @@ spec:
       params:
         - name: GITHUB_HOST_URL
           value: api.github.com
+        - name: GITHUB_TOKEN_SECRET_NAME
+          value: 'github-token'
+        - name: GITHUB_TOKEN_SECRET_KEY
+          value: 'token'
         - name: TARGET_URL
           value: >-
             #https://console-openshift-console.vcc-cluster-nonprod-londo-2357dd4394b07a146216c9204c33478a-i000.eu-gb.containers.appdomain.cloud/ns/openshift-gitops/tekton.dev~v1beta1~PipelineRun/$(context.pipelineRun.name)
