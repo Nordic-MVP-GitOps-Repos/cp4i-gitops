@@ -222,4 +222,6 @@ spec:
   workspaces:
     - name: source
     - name: git-basic-auth
+      optional: true
     - name: gitops-basic-auth
+      optional: true
