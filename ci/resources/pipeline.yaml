@@ -5,7 +5,7 @@ metadata:
 spec:
   finally:
     - name: github-set-status-finally
-        params:
+      params:
         - name: GITHUB_HOST_URL
           value: api.github.com
         - name: GITHUB_TOKEN_SECRET_NAME
