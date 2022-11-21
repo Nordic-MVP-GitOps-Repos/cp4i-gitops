@@ -56,7 +56,7 @@ spec:
       name: gitopsrepo
       type: string
   tasks:
-    - name: s2i-ace-gradle-overlay
+    - name: s2i-ace-overlay
       params:
         - name: PATH_CONTEXT
           value: app/$(params.gitpath)
@@ -82,7 +82,7 @@ spec:
         - git-clone
       taskRef:
         kind: Task
-        name: s2i-ace-gradle-overlay
+        name: s2i-ace-overlay
       workspaces:
         - name: source
           workspace: source
@@ -182,7 +182,7 @@ spec:
           value: '$(params.imageURL):$(params.imageTag)'
       runAfter:
         - git-clone-gitops
-        - s2i-ace-gradle-overlay
+        - s2i-ace-overlay
       taskRef:
         kind: Task
         name: kustomize-set-image
