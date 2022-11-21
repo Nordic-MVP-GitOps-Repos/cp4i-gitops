@@ -82,7 +82,7 @@ spec:
         - git-clone
       taskRef:
         kind: Task
-        name: s2i-ace
+        name: s2i-ace-overlay
       workspaces:
         - name: source
           workspace: source
