@@ -14,5 +14,7 @@ rules:
       - tekton.dev
       - build.openshift.io
       - image.openshift.io
+      - route.openshift.io
+      - triggers.tekton.dev
     resources:
       - '*'
