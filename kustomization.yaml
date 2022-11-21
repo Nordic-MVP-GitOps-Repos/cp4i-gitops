@@ -4,3 +4,4 @@ resources:
   - ci/ci.yaml
   - certs/certs.yaml
   - operands/operands.yaml
+  - https://api.hub.tekton.dev/v1/resource/tekton/task/github-open-pr/0.2/raw
