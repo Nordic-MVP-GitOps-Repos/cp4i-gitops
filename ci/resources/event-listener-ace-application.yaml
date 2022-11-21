@@ -12,11 +12,11 @@ spec:
           ref: github-push-with-short-id
       template:
         ref: trigger-template-build-ace-application
-      #interceptors:
-      #  - cel:
-      #      overlays:
-      #        - key: short_id
-      #          expression: 'body.head_commit.id.truncate(7)'
+      interceptors:
+        - cel:
+            overlays:
+              - key: short_id
+                expression: 'body.head_commit.id.truncate(7)'
 ---
 kind: Route
 apiVersion: route.openshift.io/v1
