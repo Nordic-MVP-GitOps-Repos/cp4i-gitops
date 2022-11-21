@@ -59,3 +59,22 @@ spec:
       kind: EventListener
       jsonPointers:
         - /spec/triggers
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kustomize-tasks
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: cp4i
+    server: https://kubernetes.default.svc
+  project: cp4i
+  source:
+    path: tasks/kustomize
+    repoURL: https://github.com/thomas-mattsson/tekton.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
