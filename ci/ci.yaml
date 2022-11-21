@@ -54,3 +54,8 @@ spec:
     automated:
       prune: true
       selfHeal: true
+  ignoreDifferences:
+    - group: triggers.tekton.dev
+      kind: EventListener
+      jsonPointers:
+        - /spec/triggers
