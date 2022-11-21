@@ -27,16 +27,10 @@ spec:
             value: $(tt.params.git-commit-message)
           - name: commit_user
             value: $(tt.params.pusher-name)
-          - name: tl-secret
-            value: twist-details
-          - name: consoleAddress
-            value: https://twistlock-console-ibmsecurity.vcc-cluster-prod-london-e-2357dd4394b07a146216c9204c33478a-i000.eu-gb.containers.appdomain.cloud
           - name: imageURL
             value: $(tt.params.git-repo-name)
           - name: imageTag
             value: $(tt.params.git-revision)
-          - name: reg-secret-name
-            value: vcc-uk-icr-io
           - name: gitrepo
             value: $(tt.params.git-repo-url)
           - name: gitreponame
@@ -53,9 +47,3 @@ spec:
           - name: source
             persistentVolumeClaim:
               claimName: tekton-workspace
-          - name: git-basic-auth
-            secret:
-              secretName: vcc-github-user-git-clone-task
-          - name: gitops-basic-auth
-            secret:
-              secretName: thomas-vcc-ghe-user
