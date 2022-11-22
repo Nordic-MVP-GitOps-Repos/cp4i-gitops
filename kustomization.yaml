@@ -5,3 +5,4 @@ resources:
   - certs/certs.yaml
   - operands/operands.yaml
   - ace-apps/ace-hello-world.yaml
+  - ace-apps/ace-hello-world-prod.yaml
