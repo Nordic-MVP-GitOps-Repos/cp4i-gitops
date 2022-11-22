@@ -152,7 +152,7 @@ spec:
             os.getenv("GITHUB_TOKEN_SECRET_KEY")
         github_token = open(github_token_filename, "r").read()
         
-        x = re.search(r"https:\/\/[^\/]*\/([^.]*)(?:\.git)?", "$(params.GIT_REPO)")
+        x = re.search(r"https:\/\/[^\/]*\/([^.]*)(?:\.git)?", "$(params.REPO_FULL_NAME)")
         print(x)
         print(x.group(1))
         repo = x.group(1)
