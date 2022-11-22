@@ -38,7 +38,7 @@ spec:
           - name: gitrevision
             value: $(tt.params.git-revision)
           - name: gitpath
-            value: .
+            value: $(tt.params.git-repo-name)
           - name: gitopsrepo
             value: https://github.com/Nordic-MVP-GitOps-Repos/cp4i-gitops
         pipelineRef:
