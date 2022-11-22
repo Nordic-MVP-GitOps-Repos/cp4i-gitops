@@ -66,10 +66,10 @@ spec:
           value: accept
         - name: BUILD_IMAGE
           value: >-
-            image-registry.openshift-image-registry.svc:5000/cp4i/s2i-ace:12.0.5.0
+            image-registry.openshift-image-registry.svc:5000/cp4i/s2i-ace:12.0.6.0-r1
         - name: RUNTIME_IMAGE
           value: >-
-            cp.icr.io/cp/appc/ace-server-prod@sha256:7eb8483de45c1634d09e24521b9d2f89a9e4d0c9b89a1a5d52cc4fd37a091234
+            cp.icr.io/cp/appc/ace-server-prod@sha256:3dbcc7caa22b0b0e6a5467cbb1a6086fafa0e125682dee4d2f51b7a59cecc766
         - name: commit_id
           value: $(params.commit_id)
         - name: commit_message
