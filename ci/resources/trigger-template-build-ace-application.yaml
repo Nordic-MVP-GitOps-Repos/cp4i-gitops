@@ -28,7 +28,7 @@ spec:
           - name: commit_user
             value: $(tt.params.pusher-name)
           - name: imageURL
-            value: $(tt.params.git-repo-name)
+            value: image-registry.openshift-image-registry.svc:5000/cp4i/$(tt.params.git-repo-name)
           - name: imageTag
             value: $(tt.params.git-revision)
           - name: gitrepo
