@@ -19,7 +19,7 @@ spec:
       values: |
           image:
             repository: image-registry.openshift-image-registry.svc:5000/cp4i/ace-hello-world
-            tag: sha256:073fe9ae0e29ad147006ff23969aff4e29076bd5a63017d866c5d2690ba4ce96
+            tag: 073fe9ae0e29ad147006ff23969aff4e29076bd5a63017d866c5d2690ba4ce96
           replicaCount: 2
   syncPolicy:
     automated:
