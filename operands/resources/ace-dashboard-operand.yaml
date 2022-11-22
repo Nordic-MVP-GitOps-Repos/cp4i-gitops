@@ -7,7 +7,7 @@ spec:
   logLevel: info
   license:
     accept: true
-    license: L-APEH-C9NCK6
+    license: L-APEH-CFZE47
     use: CloudPakForIntegrationNonProduction
   pod:
     containers:
