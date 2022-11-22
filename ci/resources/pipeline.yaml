@@ -77,7 +77,7 @@ spec:
         - name: commit_user
           value: $(params.commit_user)
         - name: IMAGE
-          value: '$(params.imageURL):$(params.imageTag)'
+          value: 'image-registry.openshift-image-registry.svc:5000/cp4i/$(params.imageURL):$(params.imageTag)'
       runAfter:
         - git-clone
       taskRef:
