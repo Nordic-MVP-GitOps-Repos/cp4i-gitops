@@ -1,9 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  # Needs to have the same name as an existing GitHub repository, used by pipelines
-  # when code is pushed. The name connects the Pipeline and the Argo application
-  name: ace-hello-world
+  name: ace-hello-world-prod
   annotations:
     argocd.argoproj.io/sync-wave: "400"
 spec:
