@@ -35,8 +35,7 @@ spec:
       type: string
     - name: commit_user
       type: string
-    - name: 
-    
+    - name: imageURL
       type: string
     - name: imageTag
       type: string
