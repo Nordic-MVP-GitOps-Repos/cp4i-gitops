@@ -3,7 +3,7 @@ kind: Subscription
 metadata:
   name: ibm-ace
 spec:
-  channel: v4.2
+  channel: v6.1
   installPlanApproval: Automatic
   name: ibm-appconnect
   source: ibm-operator-catalog
