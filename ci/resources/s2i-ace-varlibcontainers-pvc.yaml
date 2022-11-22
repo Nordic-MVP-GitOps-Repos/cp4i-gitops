@@ -5,9 +5,8 @@ metadata:
   namespace: cp4i
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 100Gi
-  storageClassName: ibmc-file-gold-gid
-  volumeMode: Filesystem
+  storageClassName: ibmc-block-gold
