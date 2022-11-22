@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  # Needs to have the same name as an existing GitHub repository, used by pipelines
+  # when code is pushed. The name connects the Pipeline and the Argo application
+  name: ace-hello-world
+  annotations:
+    argocd.argoproj.io/sync-wave: "400"
+spec:
+  destination:
+    namespace: cp4i
+    server: https://kubernetes.default.svc
+  project: cp4i
+  source:
+    repoURL: https://github.com/Nordic-MVP-GitOps-Repos/cp4i-gitops 
+    path: ace-apps/ace-integration-server-chart
+    targetRevision: main
+    helm:
+      values: |
+          image:
+            repository: image-registry.openshift-image-registry.svc:5000/cp4i/ace-hello-world
+            tag: 7682ed4c9085fe7f214d2d3761fec948c4ba1753
+          replicaCount: 3
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  ignoreDifferences:
+  - group: appconnect.ibm.com
+    kind: IntegrationServer
+    jsonPointers:
+    - /spec/replicas
