@@ -11,7 +11,7 @@ spec:
     prometheus.io/scrape: 'true'
     prometheus.io/port: '9483'
   tracing:
-    enabled: true
+    enabled: false
     namespace: cp4i
   license:
     {{- toYaml .Values.license | nindent 4 }}
