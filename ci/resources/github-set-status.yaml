@@ -146,13 +146,18 @@ spec:
         import os
         import sys
         import http.client
+        import re
 
         github_token_filename = "/etc/github-set-status/" + \
             os.getenv("GITHUB_TOKEN_SECRET_KEY")
         github_token = open(github_token_filename, "r").read()
+        
+        x = re.search(r"https:\/\/[^\/]*\/([^.]*)(?:\.git)?", "$(params.GIT_REPO)")
+        print(x)
+        print(x.group(1))
+        repo = x.group(1)
 
-        status_url = os.getenv("API_PATH_PREFIX") + "/repos/" + \
-            os.getenv("REPO_FULL_NAME") + "/statuses/" + os.getenv("SHA")
+        status_url = os.getenv("API_PATH_PREFIX") + "/repos/" + repo + "/statuses/" + os.getenv("SHA")
         print(status_url)
 
         data = {
