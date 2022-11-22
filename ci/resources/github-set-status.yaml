@@ -159,9 +159,15 @@ spec:
 
         status_url = os.getenv("API_PATH_PREFIX") + "/repos/" + repo + "/statuses/" + os.getenv("SHA")
         print(status_url)
+        
+        state = os.getenv("STATE")
+        if state == 'Succeeded':
+          state = 'success'
+        elif state == 'Failed':
+          state = 'failure'
 
         data = {
-            "state": os.getenv("STATE"),
+            "state": state,
             "target_url": os.getenv("TARGET_URL"),
             "description": os.getenv("DESCRIPTION"),
             "context": os.getenv("CONTEXT")
@@ -194,6 +200,6 @@ spec:
             sys.exit(1)
         else:
             print("GitHub status '{state}' has been set on {repo}#{sha} ".format(
-                state=os.getenv("STATE"),
+                state=state,
                 repo=os.getenv("REPO_FULL_NAME"),
                 sha=os.getenv("SHA")))
