@@ -22,7 +22,7 @@ spec:
         - name: STATE
           value: $(tasks.status)
         - name: SHA
-          value: $(tasks.git-clone-gitops.results.commit)
+          value: $(tasks.git-clone.results.commit)
         - name: REPO_FULL_NAME
           value: $(params.gitrepo)
       taskRef:
