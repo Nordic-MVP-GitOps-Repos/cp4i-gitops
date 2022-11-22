@@ -1,0 +1,97 @@
+apiVersion: appconnect.ibm.com/v1beta1
+kind: IntegrationServer
+metadata:
+  name: {{ include "ace-integration-server.fullname" . }}
+  labels:
+    {{- include "ace-integration-server.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  enableMetrics: true
+  annotations:
+    prometheus.io/scrape: 'true'
+    prometheus.io/port: '9483'
+  tracing:
+    enabled: true
+    namespace: cp4i
+  license:
+    {{- toYaml .Values.license | nindent 4 }}
+  {{ if .Values.configurations }}
+  configurations:
+    {{- toYaml .Values.configurations | nindent 4 }}
+  {{ end }}
+  env:
+    {{ if .Values.env }}
+      {{- toYaml .Values.env | nindent 4 }}
+    {{ end }}
+    - name: GIT_COMMIT
+      value: "{{ .Values.image.tag }}"
+    - name: CLIENT_ID
+      valueFrom:
+        secretKeyRef:
+          name: ace-get-weight-secret
+          key: CLIENT_ID
+    - name: CLIENT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: ace-get-weight-secret
+          key: CLIENT_SECRET
+    - name: GRANT_TYPE
+      valueFrom:
+        secretKeyRef:
+          name: ace-get-weight-secret
+          key: GRANT_TYPE
+    - name: OCP_APIM_SUBSCRIPTION_KEY
+      valueFrom:
+        secretKeyRef:
+          name: ace-get-weight-secret
+          key: OCP_APIM_SUBSCRIPTION_KEY
+    - name: RESOURCE
+      valueFrom:
+        secretKeyRef:
+          name: ace-get-weight-secret
+          key: RESOURCE
+    - name: USER_KEY
+      valueFrom:
+        secretKeyRef:
+          name: ace-get-weight-secret
+          key: USER_KEY
+    - name: CLOUDANT_URL
+      valueFrom:
+        secretKeyRef:
+          name: cloudant-secret
+          key: CLOUDANT_URL
+    - name: CLOUDANT_APIKEY
+      valueFrom:
+        secretKeyRef:
+          name: cloudant-secret
+          key: CLOUDANT_APIKEY
+    - name: COS_API_KEY_ID
+      valueFrom:
+        secretKeyRef:
+          name: metadata-secrets
+          key: COS_API_KEY_ID
+    - name: COS_SERVICE_CRN
+      valueFrom:
+        secretKeyRef:
+          name: metadata-secrets
+          key: COS_SERVICE_CRN
+    - name: MONGODB_CONNECTION_URI
+      valueFrom:
+        secretKeyRef:
+          name: metadata-secrets
+          key: MONGODB_CONNECTION_URI
+  pod:
+    containers:
+      runtime:
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
+  adminServerSecure: false
+  router:
+    timeout: 120s
+  designerFlowsOperationMode: disabled
+  createDashboardUsers: true
+  service:
+    endpointType: http   
+  version: {{ .Values.version }}
