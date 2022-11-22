@@ -153,6 +153,7 @@ spec:
 
         status_url = os.getenv("API_PATH_PREFIX") + "/repos/" + \
             os.getenv("REPO_FULL_NAME") + "/statuses/" + os.getenv("SHA")
+        print(status_url)
 
         data = {
             "state": os.getenv("STATE"),
