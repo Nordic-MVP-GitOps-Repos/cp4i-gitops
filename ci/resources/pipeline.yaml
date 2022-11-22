@@ -52,9 +52,6 @@ spec:
       description: The path in the git repo to build from
       name: gitpath
       type: string
-    - description: The git repo with the gitops repo
-      name: gitopsrepo
-      type: string
   tasks:
     - name: s2i-ace
       params:
@@ -143,85 +140,8 @@ spec:
           workspace: source
         - name: basic-auth
           workspace: git-basic-auth
-    - name: git-clone-gitops
-      params:
-        - name: url
-          value: $(params.gitopsrepo)
-        - name: submodules
-          value: 'true'
-        - name: depth
-          value: '1'
-        - name: sslVerify
-          value: 'true'
-        - name: subdirectory
-          value: gitops
-        - name: deleteExisting
-          value: 'true'
-        - name: verbose
-          value: 'true'
-        - name: gitInitImage
-          value: >-
-            registry.redhat.io/openshift-pipelines/pipelines-git-init-rhel8@sha256:fbf1c4df0f6c1330b34a0ea882ca1dff0e224f3a7060772532a2244438b91074
-        - name: userHome
-          value: /tekton/home
-      taskRef:
-        kind: ClusterTask
-        name: git-clone
-      workspaces:
-        - name: output
-          workspace: source
-        - name: basic-auth
-          workspace: gitops-basic-auth
-    - name: kustomize-set-image
-      params:
-        - name: path
-          value: gitops/envs/overlays/dev/apps/$(params.gitreponame)
-        - name: image-name
-          value: IMAGE
-        - name: image
-          value: '$(params.imageURL):$(params.imageTag)'
-      runAfter:
-        - git-clone-gitops
-        - s2i-ace
-      taskRef:
-        kind: Task
-        name: kustomize-set-image
-      workspaces:
-        - name: source
-          workspace: source
-    - name: push-image-to-gitops
-      runAfter:
-        - kustomize-set-image
-      taskRef:
-        kind: ClusterTask
-        name: git-cli
-      params:
-        - name: BASE_IMAGE
-          value: >-
-            docker.io/alpine/git:v2.26.2@sha256:23618034b0be9205d9cc0846eb711b12ba4c9b468efdd8a59aac1d7b1a23363f
-        - name: GIT_USER_NAME
-          value: $(params.commit_user)
-        - name: GIT_USER_EMAIL
-          value: $(params.commit_user)
-        - name: GIT_SCRIPT
-          value: >
-            cd gitops
-            git add -u .
-            git commit -m "Updated image by pipeline run
-            $(context.pipelineRun.uid)"
-            git push origin HEAD:main
-        - name: USER_HOME
-          value: /root
-        - name: VERBOSE
-          value: 'true'
-      workspaces:
-        - name: source
-          workspace: source
-        - name: basic-auth
-          workspace: gitops-basic-auth
   workspaces:
     - name: source
     - name: git-basic-auth
       optional: true
-    - name: gitops-basic-auth
-      optional: true
+
