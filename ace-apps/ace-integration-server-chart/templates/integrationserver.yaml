@@ -33,6 +33,10 @@ spec:
         resources:
           {{- toYaml .Values.resources | nindent 10 }}
   adminServerSecure: false
+  service:
+    endpointType: https
+  forceFlowHTTPS:
+    enabled: true
   router:
     timeout: 120s
   designerFlowsOperationMode: disabled
