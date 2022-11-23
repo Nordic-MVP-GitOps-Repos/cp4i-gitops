@@ -33,10 +33,11 @@ spec:
         resources:
           {{- toYaml .Values.resources | nindent 10 }}
   adminServerSecure: false
-  service:
-    endpointType: https
+  #service:
+    #endpointType: https
   forceFlowHTTPS:
-    enabled: false
+    enabled: true
+    secretName: mq-nativeha-internal-tls
   router:
     timeout: 120s
   designerFlowsOperationMode: disabled
