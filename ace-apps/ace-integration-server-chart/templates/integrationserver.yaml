@@ -37,7 +37,7 @@ spec:
     #endpointType: https
   forceFlowHTTPS:
     enabled: true
-    secretName: mq-nativeha-internal-tls
+    secretName: queue-manager-ha-secret-internal
   router:
     timeout: 120s
   designerFlowsOperationMode: disabled
