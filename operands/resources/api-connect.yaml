@@ -9,6 +9,7 @@ metadata:
   namespace: cp4i
 spec:
   license:
+    license: L-RJON-C7BJ42
     accept: true
     use: nonproduction
   endpointTypes:
