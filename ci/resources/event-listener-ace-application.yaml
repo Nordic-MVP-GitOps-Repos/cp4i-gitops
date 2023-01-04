@@ -10,7 +10,7 @@ spec:
           ref: github-push-with-short-id
       template:
         ref: trigger-template-build-ace-application
-        interceptors:
+      interceptors:
         - ref:
             name: cel
           params:
