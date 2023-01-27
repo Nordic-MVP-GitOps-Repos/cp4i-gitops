@@ -32,7 +32,7 @@ spec:
         deleteClaim: true
     resources:
       limits:
-        memory: 2Gi
+        memory: 3Gi
       requests:
         memory: 2Gi
     mqsc:
