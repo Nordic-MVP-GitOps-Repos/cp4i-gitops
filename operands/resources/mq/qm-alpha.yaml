@@ -10,6 +10,13 @@ spec:
     use: NonProduction
   securityContext:
     supplementalGroups: [99]
+  template:
+    pod:
+      containers:
+        - env:
+            - name: MQSNOAUT
+              value: 'yes'
+          name: qmgr
   queueManager:
     route:
       enabled: true
