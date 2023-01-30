@@ -3,7 +3,7 @@ kind: QueueManager
 metadata:
   name: qm-alpha
   labels:
-    watcher.ibm.com/opt-in: true
+    watcher.ibm.com/opt-in: 'true'
   annotations:
     watcher.ibm.com/configmap-resource: cp4i/qm-alpha-configmap
 spec:
