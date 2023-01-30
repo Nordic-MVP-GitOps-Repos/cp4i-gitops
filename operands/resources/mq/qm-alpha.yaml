@@ -2,6 +2,10 @@ apiVersion: mq.ibm.com/v1beta1
 kind: QueueManager
 metadata:
   name: qm-alpha
+  labels:
+    watcher.ibm.com/opt-in: true
+  annotations:
+    watcher.ibm.com/configmap-resource: cp4i/qm-alpha-configmap
 spec:
   license:
     accept: true
