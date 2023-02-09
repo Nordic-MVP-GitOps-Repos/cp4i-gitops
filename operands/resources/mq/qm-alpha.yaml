@@ -15,7 +15,7 @@ spec:
       containers:
         - env:
             - name: MQSNOAUT
-              value: 'yes'
+              value: "yes"
           name: qmgr
   queueManager:
     route:
@@ -43,18 +43,22 @@ spec:
       requests:
         memory: 2Gi
     mqsc:
-    - configMap:
-        name: qm-alpha-configmap
-        items:
-        - tls.mqsc
+      - configMap:
+          name: qm-alpha-configmap
+          items:
+            - tls.mqsc
+      - configMap:
+          name: qm-alpha-trig-myown-cm
+          items:
+            - alpha-trig-myown.mqsc
   version: 9.3.1.1-r1
   pki:
     keys:
       - name: example
         secret:
           secretName: mq-server-tls-alpha
-          items: 
-           - tls.key
-           - tls.crt
+          items:
+            - tls.key
+            - tls.crt
   web:
     enabled: true
