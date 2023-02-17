@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: new-queue-configmap
+data:
+  tls.mqsc: |
+    DEFINE QLOCAL('ALPHA.QUEUE1') DEFPSIST(YES) REPLACE

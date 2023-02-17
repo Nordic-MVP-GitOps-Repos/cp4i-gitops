@@ -6,3 +6,4 @@ resources:
   - operands/operands.yaml
   - ace-apps/ace-hello-world.yaml
   - ace-apps/ace-hello-world-prod.yaml
+  - service-requests/service-requests.yaml

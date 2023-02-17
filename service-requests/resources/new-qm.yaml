@@ -1,0 +1,55 @@
+apiVersion: mq.ibm.com/v1beta1
+kind: QueueManager
+metadata:
+  name: new-qm
+spec:
+  license:
+    accept: true
+    license: L-RJON-CD3JKX
+    metric: VirtualProcessorCore
+    use: NonProduction
+  securityContext:
+    supplementalGroups: [99]
+  template:
+    pod:
+      containers:
+        - env:
+            - name: MQSNOAUT
+              value: "yes"
+          name: qmgr
+  queueManager:
+    route:
+      enabled: true
+    name: QMALPHA
+    availability:
+      type: NativeHA
+      tls:
+        secretName: queue-manager-ha-secret-internal
+    storage:
+      queueManager:
+        class: ibmc-block-gold
+        deleteClaim: true
+      persistedData:
+        enabled: false
+        class: ibmc-block-gold
+        deleteClaim: true
+      recoveryLogs:
+        enabled: false
+        class: ibmc-block-gold
+        deleteClaim: true
+    resources:
+      limits:
+        memory: 2Gi
+      requests:
+        memory: 2Gi
+  version: 9.3.1.1-r1
+  pki:
+    keys:
+      - name: example
+        secret:
+          secretName: mq-server-tls-alpha
+          items:
+            - tls.key
+            - tls.crt
+  web:
+    enabled: true
