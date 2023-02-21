@@ -1,4 +1,5 @@
 resources:
   - new-queue-cm.yaml
+  - https://api.hub.tekton.dev/v1/resource/tekton/task/github-open-pr/0.2/raw
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
