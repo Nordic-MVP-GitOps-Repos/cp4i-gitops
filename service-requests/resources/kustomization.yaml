@@ -9,6 +9,10 @@ patches:
   target:
     kind: QueueManager
     name: new-qm
+- path: patches/test-queue2-patch.yaml
+  target:
+    kind: QueueManager
+    name: new-qm
 - path: patches/test-queue1-patch.yaml
   target:
     kind: QueueManager
