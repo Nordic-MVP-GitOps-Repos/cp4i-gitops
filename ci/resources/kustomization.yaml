@@ -1,0 +1,11 @@
+resources:
+  - github-open-pr.yaml
+  - event-listener-ace-application.yaml
+  - github-set-status.yaml
+  - pipeline.yaml
+  - s2i-ace-varlibcontainers-pvc.yaml
+  - tekton-workspace.yaml
+  - trigger-binding-github-push-short-id.yaml
+  - trigger-template-build-ace-application.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

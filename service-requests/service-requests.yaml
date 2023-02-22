@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://github.com/Nordic-MVP-GitOps-Repos/cp4i-gitops
     path: service-requests/resources
-    targetRevision: develop
+    targetRevision: main
   syncPolicy:
     automated:
       prune: false
