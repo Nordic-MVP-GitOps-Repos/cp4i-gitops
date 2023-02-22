@@ -116,10 +116,15 @@ spec:
         import os
         import sys
         import http.client
+        import re
 
-        print(os.path.abspath())
         print(os.getcwd())
         print(os.getenv("GITHUB_TOKEN_SECRET_KEY"))
+
+        x = re.search(r"https:\/\/[^\/]*\/([^.]*)(?:\.git)?", "$(params.REPO_FULL_NAME)")
+        print(x)
+        print(x.group(1))
+        repo = x.group(1)
 
         github_token_filename = "/etc/github-open-pr/" + \
             os.getenv("GITHUB_TOKEN_SECRET_KEY")
