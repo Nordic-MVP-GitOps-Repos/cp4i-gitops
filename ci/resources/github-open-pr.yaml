@@ -117,6 +117,10 @@ spec:
         import sys
         import http.client
 
+        print(os.path.abspath())
+        print(os.getcwd())
+        print(os.getenv("GITHUB_TOKEN_SECRET_KEY"))
+
         github_token_filename = "/etc/github-open-pr/" + \
             os.getenv("GITHUB_TOKEN_SECRET_KEY")
         github_token = open(github_token_filename, "r").read()
