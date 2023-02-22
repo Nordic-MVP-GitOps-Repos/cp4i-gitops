@@ -91,6 +91,16 @@ spec:
           readOnly: true
           mountPath: /etc/github-open-pr
       env:
+        - name: GITHUB_HOST_URL
+          value: $(params.GITHUB_HOST_URL)
+        - name: API_PATH_PREFIX
+          value: $(params.API_PATH_PREFIX)
+        - name: REPO_FULL_NAME
+          value: $(params.REPO_FULL_NAME)
+        - name: GITHUB_TOKEN_SECRET_NAME
+          value: $(params.GITHUB_TOKEN_SECRET_NAME)
+        - name: GITHUB_TOKEN_SECRET_KEY
+          value: $(params.GITHUB_TOKEN_SECRET_KEY)
         - name: PULLREQUEST_NUMBER_PATH
           value: $(results.NUMBER.path)
         - name: PULLREQUEST_URL_PATH
@@ -107,9 +117,11 @@ spec:
         import sys
         import http.client
 
-        github_token = open("/etc/github-open-pr/$(params.GITHUB_TOKEN_SECRET_KEY)", "r").read()
+        github_token_filename = "/etc/github-open-pr/" + \
+            os.getenv("GITHUB_TOKEN_SECRET_KEY")
+        github_token = open(github_token_filename, "r").read()
 
-        open_pr_url = "$(params.API_PATH_PREFIX)" + "/repos/$(params.REPO_FULL_NAME)/pulls"
+        open_pr_url = os.getenv("API_PATH_PREFIX") + "/repos/$(params.REPO_FULL_NAME)/pulls"
 
         data = {
             "head": "$(params.HEAD)",
@@ -120,7 +132,7 @@ spec:
         print("Sending this data to GitHub: ")
         print(data)
 
-        authHeader = "$(params.AUTH_TYPE) " + github_token
+        authHeader = os.getenv("AUTH_TYPE") + " " + github_token
 
         # This is for our fake github server
         if "$(params.GITHUB_HOST_URL)".startswith("http://"):
