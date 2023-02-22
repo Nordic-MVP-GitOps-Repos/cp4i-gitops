@@ -116,13 +116,6 @@ spec:
         import os
         import sys
         import http.client
-        import re
-
-        print(os.getcwd())
-        print(os.getenv("GITHUB_TOKEN_SECRET_KEY"))
-
-        res = os.listdir("/etc/github-open-pr/secret_name")
-        print(res)
 
 
         github_token_filename = "/etc/github-open-pr/" + \
