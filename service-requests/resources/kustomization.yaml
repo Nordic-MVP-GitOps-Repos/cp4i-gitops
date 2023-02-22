@@ -2,6 +2,7 @@ resources:
   - new-qm.yaml
   - config-map/new-queue-cm.yaml
   - config-map/test-queue1-cm.yaml
+  - config-map/test-queue2-cm.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 patches:
