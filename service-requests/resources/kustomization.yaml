@@ -1,0 +1,15 @@
+resources:
+- config-map
+- new-qm.yaml
+- config-map/test-queue1-cm.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+patches:
+- path: patches/new-queue-patch.yaml
+  target:
+    kind: QueueManager
+    name: new-qm
+- path: patches/test-queue1-patch.yaml
+  target:
+    kind: QueueManager
+    name: new-qm

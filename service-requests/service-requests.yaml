@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: service-requests
+  annotations:
+    argocd.argoproj.io/sync-wave: "200"
+spec:
+  destination:
+    namespace: cp4i
+    server: https://kubernetes.default.svc
+  project: cp4i
+  source:
+    repoURL: https://github.com/Nordic-MVP-GitOps-Repos/cp4i-gitops
+    path: service-requests/resources
+    targetRevision: develop
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
