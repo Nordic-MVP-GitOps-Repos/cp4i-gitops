@@ -11,8 +11,8 @@ resources:
   - acme-rolebinding.yaml
   - ibm-ops-dashboard-operator.yaml
   
-  - https://raw.githubusercontent.com/tnozicka/openshift-acme/master/deploy/specific-namespaces/deployment.yaml
-  - https://raw.githubusercontent.com/tnozicka/openshift-acme/master/deploy/specific-namespaces/issuer-letsencrypt-live.yaml
-  #- https://raw.githubusercontent.com/tnozicka/openshift-acme/master/deploy/specific-namespaces/issuer-letsencrypt-staging.yaml
-  - https://raw.githubusercontent.com/tnozicka/openshift-acme/master/deploy/specific-namespaces/role.yaml
-  - https://raw.githubusercontent.com/tnozicka/openshift-acme/master/deploy/specific-namespaces/serviceaccount.yaml
+  - https://raw.githubusercontent.com/tnozicka/openshift-acme/master/deploy/single-namespace/deployment.yaml
+  - https://raw.githubusercontent.com/tnozicka/openshift-acme/master/deploy/single-namespace/issuer-letsencrypt-live.yaml
+  #- https://raw.githubusercontent.com/tnozicka/openshift-acme/master/deploy/single-namespace/issuer-letsencrypt-staging.yaml
+  - https://raw.githubusercontent.com/tnozicka/openshift-acme/master/deploy/single-namespace/role.yaml
+  - https://raw.githubusercontent.com/tnozicka/openshift-acme/master/deploy/single-namespace/serviceaccount.yaml
