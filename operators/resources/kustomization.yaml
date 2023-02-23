@@ -9,6 +9,7 @@ resources:
   - ibm-mq-operator.yaml
   - ibm-platform-navigator-operator.yaml
   - acme-rolebinding.yaml
+  - ibm-ops-dashboard-operator.yaml
   
   - https://raw.githubusercontent.com/tnozicka/openshift-acme/master/deploy/specific-namespaces/deployment.yaml
   - https://raw.githubusercontent.com/tnozicka/openshift-acme/master/deploy/specific-namespaces/issuer-letsencrypt-live.yaml
