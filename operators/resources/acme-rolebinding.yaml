@@ -10,3 +10,18 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
   name: openshift-acme
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: acme-rb
+  namespace: test
+subjects:
+  - kind: ServiceAccount
+    name: openshift-acme
+    namespace: test
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: openshift-acme
+
