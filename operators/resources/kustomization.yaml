@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ace-operator.yaml
+  - api-connect-operator.yaml
+  - catalogsource.yaml
+  - event-streams-operator.yaml
+  - ibm-mq-operator.yaml
+  - ibm-platform-navigator-operator.yaml
+  
+  - https://raw.githubusercontent.com/tnozicka/openshift-acme/master/deploy/specific-namespaces/deployment.yaml
+  - https://raw.githubusercontent.com/tnozicka/openshift-acme/master/deploy/specific-namespaces/issuer-letsencrypt-live.yaml
+  - https://raw.githubusercontent.com/tnozicka/openshift-acme/master/deploy/specific-namespaces/issuer-letsencrypt-staging.yaml
+  - https://raw.githubusercontent.com/tnozicka/openshift-acme/master/deploy/specific-namespaces/role.yaml
+  - https://raw.githubusercontent.com/tnozicka/openshift-acme/master/deploy/specific-namespaces/serviceaccount.yaml
