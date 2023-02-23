@@ -8,7 +8,7 @@ resources:
   - event-streams-operator.yaml
   - ibm-mq-operator.yaml
   - ibm-platform-navigator-operator.yaml
-  - acme-rb.yaml
+  - acme-rolebinding.yaml
   
   - https://raw.githubusercontent.com/tnozicka/openshift-acme/master/deploy/specific-namespaces/deployment.yaml
   - https://raw.githubusercontent.com/tnozicka/openshift-acme/master/deploy/specific-namespaces/issuer-letsencrypt-live.yaml
