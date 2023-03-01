@@ -56,7 +56,7 @@ spec:
     keys:
       - name: example
         secret:
-          secretName: mq-server-tls-alpha-letsencrypt
+          secretName: mq-server-tls-alpha
           items:
             - tls.key
             - tls.crt
