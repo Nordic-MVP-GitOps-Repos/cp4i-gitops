@@ -5,7 +5,7 @@ metadata:
 spec:
   license:
     accept: true
-    license: L-RJON-CD3JKX
+    license: L-RJON-C7QG3S
     metric: VirtualProcessorCore
     use: NonProduction
   securityContext:
