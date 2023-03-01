@@ -1,7 +1,7 @@
 apiVersion: mq.ibm.com/v1beta1
 kind: QueueManager
 metadata:
-  name: qm-alpha-2
+  name: qm-alpha
 spec:
   license:
     accept: true
