@@ -28,5 +28,13 @@ spec:
         items:
         - tls.mqsc
   version: 9.2.5.0-r3
+  pki:
+    keys:
+      - name: default
+        secret:
+          secretName: mq-server-tls-beta
+          items:
+            - tls.key
+            - tls.crt
   web:
     enabled: true
