@@ -11,7 +11,7 @@ spec:
   queueManager:
     route:
       enabled: true
-    name: QMBETA
+    name: QMBETALEC
     availability:
       type: SingleInstance
     storage:
