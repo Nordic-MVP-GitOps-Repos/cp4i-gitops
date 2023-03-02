@@ -45,8 +45,8 @@ spec:
             - tls.crt
     trust:
       - name: rootca
-        secret: mq-server-beta-letsencrypt
-          secretName: 
+        secret: 
+          secretName: mq-server-beta-letsencrypt
           items:
             - tls.crt
   web:
