@@ -32,7 +32,7 @@ spec:
     keys:
       - name: default
         secret:
-          secretName: mq-server-tls-beta-letsencrypt
+          secretName: mq-server-tls-beta
           items:
             - tls.key
             - tls.crt
