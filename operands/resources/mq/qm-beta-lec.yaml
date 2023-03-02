@@ -1,0 +1,47 @@
+apiVersion: mq.ibm.com/v1beta1
+kind: QueueManager
+metadata:
+  name: qm-beta-lec
+spec:
+  license:
+    accept: true
+    license: L-RJON-C7QG3S
+    metric: VirtualProcessorCore
+    use: NonProduction
+  queueManager:
+    route:
+      enabled: true
+    name: QMBETA
+    availability:
+      type: SingleInstance
+    storage:
+      queueManager:
+        type: ibmc-block-gold
+    resources:
+      limits:
+        memory: 1Gi
+      requests:
+        memory: 1Gi
+    mqsc:
+    - configMap:
+        name: qm-beta-lec-configmap
+        items:
+        - tls.mqsc
+  template:
+    pod:
+      containers:
+        - env:
+            - name: MQSNOAUT
+              value: "yes"
+          name: qmgr
+  version: 9.2.5.0-r3
+  pki:
+    keys:
+      - name: default
+        secret:
+          secretName: mq-server-beta-letsencrypt
+          items:
+            - tls.key
+            - tls.crt
+  web:
+    enabled: true
