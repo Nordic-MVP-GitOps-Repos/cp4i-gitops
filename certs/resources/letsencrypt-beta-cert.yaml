@@ -1,9 +1,9 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: mq-server-tls-beta-letsencrypt
+  name: mq-server-beta-letsencrypt
 spec:
-  secretName: mq-server-tls-beta-letsencrypt
+  secretName: mq-server-beta-letsencrypt
   duration: 2160h0m0s # 90d
   renewBefore: 360h0m0s # 15d
   commonName: nbt.ceibm.com
@@ -20,7 +20,7 @@ spec:
     - server auth
     - client auth
   dnsNames:
-    - 'qm-beta-ibm-mq-qm-cp4i.cpi4i-classic-fra02-b3c-e7d3d93b8b317d269525bf063b24f98d-0000.eu-de.containers.appdomain.cloud'
+    - 'qm-beta-lec-ibm-mq-qm-cp4i.cpi4i-classic-fra02-b3c-e7d3d93b8b317d269525bf063b24f98d-0000.eu-de.containers.appdomain.cloud'
     - 'nbt.ceibm.com'
   issuerRef:
     name: letsencrypt-issuer
