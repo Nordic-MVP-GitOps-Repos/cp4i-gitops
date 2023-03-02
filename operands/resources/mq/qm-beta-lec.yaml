@@ -43,7 +43,5 @@ spec:
           items:
             - tls.key
             - tls.crt
-            - tls2.crt
-            - tls3.crt
   web:
     enabled: true
