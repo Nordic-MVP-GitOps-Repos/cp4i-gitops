@@ -39,9 +39,11 @@ spec:
     keys:
       - name: default
         secret:
-          secretName: mq-server-beta-letsencrypt
+          secretName: tls2
           items:
             - tls.key
             - tls.crt
+            - tls2.crt
+            - tls3.crt
   web:
     enabled: true
