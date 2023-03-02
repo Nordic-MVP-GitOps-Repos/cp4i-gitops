@@ -43,11 +43,6 @@ spec:
           items:
             - tls.key
             - tls.crt
-    trust:
-      - name: default
-        secret:
-          secretName: lec-r3
-          items:
-            - tls.crt
+            - lec-r3
   web:
     enabled: true
