@@ -48,6 +48,7 @@ spec:
         secret:
           secretName: letsencrypt
           items:
+            - tls.crt
             - intermediate.crt
   web:
     enabled: true
