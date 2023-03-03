@@ -23,10 +23,10 @@ spec:
       requests:
         memory: 1Gi
     mqsc:
-    - configMap:
-        name: qm-beta-lec-configmap
-        items:
-        - tls.mqsc
+      - configMap:
+          name: qm-beta-lec-configmap
+          items:
+            - tls.mqsc
   template:
     pod:
       containers:
@@ -44,11 +44,10 @@ spec:
             - tls.key
             - tls.crt
     trust:
-      - name: letsencrypt 
-        secret: 
+      - name: letsencrypt
+        secret:
           secretName: letsencrypt
           items:
-            - tls.crt
             - intermediate.crt
   web:
     enabled: true
