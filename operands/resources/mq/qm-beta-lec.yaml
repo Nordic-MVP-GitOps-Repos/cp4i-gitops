@@ -43,5 +43,11 @@ spec:
           items:
             - tls.key
             - tls.crt
+    trust:
+      - name: fullchain 
+        secret: 
+          secretName: mq-server-beta-letsencrypt
+          items:
+            - tls.crt
   web:
     enabled: true
