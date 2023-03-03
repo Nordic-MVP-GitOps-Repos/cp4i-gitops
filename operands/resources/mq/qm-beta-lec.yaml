@@ -46,7 +46,7 @@ spec:
     trust:
       - name: letsencrypt 
         secret: 
-          secretName: mq-server-beta-letsencrypt
+          secretName: letsencrypt
           items:
             - tls.crt
   web:
