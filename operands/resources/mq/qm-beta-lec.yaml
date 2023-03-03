@@ -49,5 +49,6 @@ spec:
           secretName: letsencrypt
           items:
             - root
+            - intermediate
   web:
     enabled: true
