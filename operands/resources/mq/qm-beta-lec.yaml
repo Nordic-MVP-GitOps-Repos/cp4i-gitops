@@ -46,9 +46,9 @@ spec:
     trust:
       - name: letsencrypt
         secret:
-          secretName: letsencrypt
+          secretName: letsencrypt-chain
           items:
-            - tls.crt
+            - root.crt
             - intermediate.crt
   web:
     enabled: true
